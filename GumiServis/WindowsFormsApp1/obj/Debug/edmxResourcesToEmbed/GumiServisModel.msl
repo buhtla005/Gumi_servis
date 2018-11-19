@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GumiServisModelModelStoreContainer" CdmEntityContainer="GumiServisModelEntities">
+    <EntitySetMapping Name="Boks">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Bok">
+        <MappingFragment StoreEntitySet="Boks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv_boksa" ColumnName="Naziv_boksa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klijents">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Klijent">
+        <MappingFragment StoreEntitySet="Klijent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="OIB" ColumnName="OIB" />
+          <ScalarProperty Name="Tvrtka" ColumnName="Tvrtka" />
+          <ScalarProperty Name="Loyality" ColumnName="Loyality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mjestoes">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Mjesto">
+        <MappingFragment StoreEntitySet="Mjesto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv_mj" ColumnName="Naziv_mj" />
+          <ScalarProperty Name="Postanski_br" ColumnName="Postanski_br" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Poslovnicas">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Poslovnica">
+        <MappingFragment StoreEntitySet="Poslovnica">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv_po" ColumnName="Naziv_po" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Br_telefona" ColumnName="Br_telefona" />
+          <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+          <ScalarProperty Name="MjestoID" ColumnName="MjestoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Radni_nalog">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Radni_nalog">
+        <MappingFragment StoreEntitySet="Radni_nalog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="brNaloga" ColumnName="brNaloga" />
+          <ScalarProperty Name="RasporedId" ColumnName="RasporedId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rasporeds">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Raspored">
+        <MappingFragment StoreEntitySet="Raspored">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BoksId" ColumnName="BoksId" />
+          <ScalarProperty Name="VoziloId" ColumnName="VoziloId" />
+          <ScalarProperty Name="DatumVrijeme" ColumnName="DatumVrijeme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skladistes">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Skladiste">
+        <MappingFragment StoreEntitySet="Skladiste">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv_sk" ColumnName="Naziv_sk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ugovors">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Ugovor">
+        <MappingFragment StoreEntitySet="Ugovor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Br_ugovora" ColumnName="Br_ugovora" />
+          <ScalarProperty Name="Datum_sklapanja" ColumnName="Datum_sklapanja" />
+          <ScalarProperty Name="Datum_Isteka" ColumnName="Datum_Isteka" />
+          <ScalarProperty Name="SkladisteID" ColumnName="SkladisteID" />
+          <ScalarProperty Name="PoslovnicaID" ColumnName="PoslovnicaID" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+          <ScalarProperty Name="VoziloID" ColumnName="VoziloID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UslugaProdajas">
+      <EntityTypeMapping TypeName="GumiServisModelModel.UslugaProdaja">
+        <MappingFragment StoreEntitySet="UslugaProdaja">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv_us_pro" ColumnName="Naziv_us_pro" />
+          <ScalarProperty Name="Jed_cijena" ColumnName="Jed_cijena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voziloes">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Vozilo">
+        <MappingFragment StoreEntitySet="Vozilo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reg_oznaka" ColumnName="Reg_oznaka" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaposleniks">
+      <EntityTypeMapping TypeName="GumiServisModelModel.Zaposlenik">
+        <MappingFragment StoreEntitySet="Zaposlenik">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Korisnicko_ime" ColumnName="Korisnicko_ime" />
+          <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+          <ScalarProperty Name="PoslovnicaID" ColumnName="PoslovnicaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

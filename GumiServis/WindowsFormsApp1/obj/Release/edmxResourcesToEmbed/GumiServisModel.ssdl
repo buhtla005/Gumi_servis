@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GumiServisModelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Boks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_boksa" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klijent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OIB" Type="varchar" MaxLength="50" />
+    <Property Name="Tvrtka" Type="bit" />
+    <Property Name="Loyality" Type="bit" />
+  </EntityType>
+  <EntityType Name="Mjesto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_mj" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Postanski_br" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Poslovnica">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_po" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adresa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Br_telefona" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="E_mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MjestoID" Type="int" />
+  </EntityType>
+  <EntityType Name="Radni_nalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brNaloga" Type="float" Nullable="false" />
+    <Property Name="RasporedId" Type="int" />
+  </EntityType>
+  <EntityType Name="Raspored">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoksId" Type="int" Nullable="false" />
+    <Property Name="VoziloId" Type="int" Nullable="false" />
+    <Property Name="DatumVrijeme" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skladiste">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_sk" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ugovor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Br_ugovora" Type="int" Nullable="false" />
+    <Property Name="Datum_sklapanja" Type="datetime" Nullable="false" />
+    <Property Name="Datum_Isteka" Type="datetime" Nullable="false" />
+    <Property Name="SkladisteID" Type="int" Nullable="false" />
+    <Property Name="PoslovnicaID" Type="int" Nullable="false" />
+    <Property Name="KlijentID" Type="int" Nullable="false" />
+    <Property Name="VoziloID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UslugaProdaja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv_us_pro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Jed_cijena" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vozilo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reg_oznaka" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="KlijentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zaposlenik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Korisnicko_ime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lozinka" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PoslovnicaID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Poslovnica_Mjesto">
+    <End Role="Mjesto" Type="Self.Mjesto" Multiplicity="0..1" />
+    <End Role="Poslovnica" Type="Self.Poslovnica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mjesto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Poslovnica">
+        <PropertyRef Name="MjestoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Radni_nalog_Raspored">
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="0..1" />
+    <End Role="Radni_nalog" Type="Self.Radni_nalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Raspored">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Radni_nalog">
+        <PropertyRef Name="RasporedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raspored_Auto">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="VoziloId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raspored_Boks">
+    <End Role="Boks" Type="Self.Boks" Multiplicity="1" />
+    <End Role="Raspored" Type="Self.Raspored" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Boks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Raspored">
+        <PropertyRef Name="BoksId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ugovor_Klijent">
+    <End Role="Klijent" Type="Self.Klijent" Multiplicity="1" />
+    <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovor">
+        <PropertyRef Name="KlijentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ugovor_Poslovnica">
+    <End Role="Poslovnica" Type="Self.Poslovnica" Multiplicity="1" />
+    <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poslovnica">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovor">
+        <PropertyRef Name="PoslovnicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ugovor_Skladiste">
+    <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+    <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skladiste">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovor">
+        <PropertyRef Name="SkladisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ugovor_Vozilo">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="1" />
+    <End Role="Ugovor" Type="Self.Ugovor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ugovor">
+        <PropertyRef Name="VoziloID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vozilo_Klijent">
+    <End Role="Klijent" Type="Self.Klijent" Multiplicity="1" />
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vozilo">
+        <PropertyRef Name="KlijentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zaposlenik_Poslovnica">
+    <End Role="Poslovnica" Type="Self.Poslovnica" Multiplicity="0..1" />
+    <End Role="Zaposlenik" Type="Self.Zaposlenik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poslovnica">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zaposlenik">
+        <PropertyRef Name="PoslovnicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GumiServisModelModelStoreContainer">
+    <EntitySet Name="Boks" EntityType="Self.Boks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klijent" EntityType="Self.Klijent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mjesto" EntityType="Self.Mjesto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Poslovnica" EntityType="Self.Poslovnica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Radni_nalog" EntityType="Self.Radni_nalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Raspored" EntityType="Self.Raspored" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skladiste" EntityType="Self.Skladiste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ugovor" EntityType="Self.Ugovor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UslugaProdaja" EntityType="Self.UslugaProdaja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zaposlenik" EntityType="Self.Zaposlenik" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Poslovnica_Mjesto" Association="Self.FK_Poslovnica_Mjesto">
+      <End Role="Mjesto" EntitySet="Mjesto" />
+      <End Role="Poslovnica" EntitySet="Poslovnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Radni_nalog_Raspored" Association="Self.FK_Radni_nalog_Raspored">
+      <End Role="Raspored" EntitySet="Raspored" />
+      <End Role="Radni_nalog" EntitySet="Radni_nalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raspored_Auto" Association="Self.FK_Raspored_Auto">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raspored_Boks" Association="Self.FK_Raspored_Boks">
+      <End Role="Boks" EntitySet="Boks" />
+      <End Role="Raspored" EntitySet="Raspored" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ugovor_Klijent" Association="Self.FK_Ugovor_Klijent">
+      <End Role="Klijent" EntitySet="Klijent" />
+      <End Role="Ugovor" EntitySet="Ugovor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ugovor_Poslovnica" Association="Self.FK_Ugovor_Poslovnica">
+      <End Role="Poslovnica" EntitySet="Poslovnica" />
+      <End Role="Ugovor" EntitySet="Ugovor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ugovor_Skladiste" Association="Self.FK_Ugovor_Skladiste">
+      <End Role="Skladiste" EntitySet="Skladiste" />
+      <End Role="Ugovor" EntitySet="Ugovor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ugovor_Vozilo" Association="Self.FK_Ugovor_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="Ugovor" EntitySet="Ugovor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vozilo_Klijent" Association="Self.FK_Vozilo_Klijent">
+      <End Role="Klijent" EntitySet="Klijent" />
+      <End Role="Vozilo" EntitySet="Vozilo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zaposlenik_Poslovnica" Association="Self.FK_Zaposlenik_Poslovnica">
+      <End Role="Poslovnica" EntitySet="Poslovnica" />
+      <End Role="Zaposlenik" EntitySet="Zaposlenik" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
